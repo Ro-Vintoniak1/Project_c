@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+using namespace std;
+string dec_to_bin(unsigned long long num)
+{
+   string bin;
+     while (num != 0)
+    {
+        bin = char((num & 0x01) + '0') + bin;
+         num >>= 1;
+    }
+    return bin;
+}
+int main()
+{ string str,str2;
+    int a;
+    cin>>a;
+    str2.clear();
+    str=dec_to_bin(a);
+     for(int i=0;i<=str.length();i++){
+         if(str[i]=='1') str2=str2+"SX";
+        if(str[i]=='0') str2=str2+"S";      
+     }
+     str2.erase(0,2);
+     cout<<str2<<endl;
+    return 0;
+}
