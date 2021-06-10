@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+#include <math.h>
+
+ 
+
+class Triangle
+
+{
+
+private:
+
+  double x[3], y[3];
+
+  double a, b, c;
+
+public:
+
+  Triangle(void)
+
+  {
+
+    scanf("%lf %lf %lf %lf %lf %lf",&x[0],&y[0],&x[1],&y[1],&x[2],&y[2]);
+
+    a = sqrt((x[1] - x[0])*(x[1] - x[0]) + (y[1] - y[0])*(y[1] - y[0]));
+
+    b = sqrt((x[2] - x[0])*(x[2] - x[0]) + (y[2] - y[0])*(y[2] - y[0]));
+
+    c = sqrt((x[2] - x[1])*(x[2] - x[1]) + (y[2] - y[1])*(y[2] - y[1]));
+
+  }
+
+  double Perimeter(void)
+
+  {
+
+    return a + b + c;
+
+  }
+
+  double Area(void)
+
+  {
+
+    double p = Perimeter() / 2;
+
+    return sqrt(p * (p - a) * (p - b) * (p - c));
+
+  }
+
+};
+
+ 
+
+int main(void)
+
+{
+
+  Triangle tri;
+
+  printf("%.4lf %.4lf\n",tri.Perimeter(),tri.Area());
+
+  return 0;
+
+}
