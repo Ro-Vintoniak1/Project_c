@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+using namespace std;
+ 
+int main() {
+	int counter=0;
+	string text; 
+	getline (cin,text); 
+	string vowel="AEOUIY"; 
+	size_t found=text.find_first_of(vowel);
+	while (found!=-1) 
+	{
+		counter++;
+		found=text.find_first_of(vowel,found+1);
+	}
+	cout << counter << endl;
+	return 0;
+}
