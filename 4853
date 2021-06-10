@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+ 
+int n,m,a,b,count = 0;
+vector<vector<int> > graf; vector<int> ver; vector<int> family; bool ok = false; vector<int> ans; vector<bool> popa;
+ 
+int bfs(int beg, int end){ 
+    count++;
+    if(beg == end){
+        ok = true;
+        return 1;
+    }else{
+        for(int i = graf[beg].size() - 1;i >= 0;i--){
+            if(!popa[graf[beg][i]]){
+                ver.push_back(graf[beg][i]);
+                family.push_back(beg);
+                popa[graf[beg][i]] = true;
+            }
+        }
+    }
+    return 0;
+}
+ 
+int main() {
+    ios::sync_with_stdio(false);
+    cin >> n >> m;
+    cin >> a >> b;
+    for(int i = 0 ; i <= n; i++){ 
+            graf.push_back(ans);
+            popa.push_back(false);
+    }
+    ver.push_back(a);family.push_back(a);
+    for(int i = 0; i < m; i++){ 
+        int x,y;
+        cin >> x >> y;
+        if(x != y){ 
+            graf[x].push_back(y);
+            graf[y].push_back(x);
+        }
+    }
+    if(!graf[a].empty()){ 
+        while(!ok && count < ver.size() ){ 
+            if(bfs(ver[count],b)){ 
+                count--;
+                int p = 1; 
+                ans.push_back(b);
+                while(ver[count] != a){
+                    while(ver[p] != family[count]){
+                        p++;
+                    }
+                    ans.push_back(ver[p]);
+                    count = p;
+                    p = 1;
+                }
+            }
+        }
+        if(ans.size() > 0){ 
+            cout << ans.size()-1 << endl;
+            for(int i = ans.size()-1; i >= 0; i--){
+                cout << ans[i] << " "; 
+            }
+        }else{ 
+            cout << "-1\n";
+        }
+    }else{
+        cout << "-1\n";
+    }
+    return 0;
+}
